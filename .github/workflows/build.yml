@@ -25,7 +25,7 @@ jobs:
         path: keyboards\crkbd\keymaps\qmk-keymap-corne
 
     - name: Build firmware
-      run: qmk compile -kb crkbd/rev1 -km qmk-keymap-corne -e CONVERT_TO=rp2040_ce
+      run: qmk compile -kb crkbd/rev1 -km default -e CONVERT_TO=rp2040_ce
 
 
     - name: Archive firmware
