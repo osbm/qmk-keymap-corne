@@ -34,6 +34,7 @@
         ];
         shellHook = ''
           echo 'Welcome to my keyboard development.'
+          keymapviz -k crkbd keymap.c
         '';
       };
     };
