@@ -12,6 +12,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    qmk-git = {
+      url = "github:qmk/qmk_firmware/0.28.2";
+      flake = false;
+    };
   };
 
   outputs =
