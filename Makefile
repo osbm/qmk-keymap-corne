@@ -4,7 +4,7 @@ all:
 	docker run --rm -it --privileged \
 		-v /dev:/dev \
 		-w /qmk_firmware \
-		-v .:/qmk_firmware/keyboards/crkbd/keymaps/osbm-config:z \
+		-v ./custom:/qmk_firmware/keyboards/crkbd/keymaps/osbm-config:z \
 		-e SKIP_GIT= \
 		-e SKIP_VERSION= \
 		-e MAKEFLAGS= \
@@ -15,7 +15,7 @@ flash-rp2040:
 		-v /dev:/dev \
 		-w /qmk_firmware \
 		-v .:/output \
-		-v .:/qmk_firmware/keyboards/crkbd/keymaps/osbm-config:z \
+		-v ./custom:/qmk_firmware/keyboards/crkbd/keymaps/osbm-config:z \
 		-e USER=root \
 		-e SKIP_GIT= \
 		-e SKIP_VERSION= \
