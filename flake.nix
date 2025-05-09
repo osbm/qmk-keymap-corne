@@ -21,6 +21,7 @@
   outputs =
     {
       nixpkgs,
+      qmk-git,
       ... }:
     let
       system = "x86_64-linux";
@@ -40,6 +41,44 @@
           echo 'Welcome to my keyboard development.'
           keymapviz -k crkbd keymap.c
         '';
+      };
+      packages."${system}".default = pkgs.stdenv.mkDerivation {
+        name = "corne";
+        # src = ./.;
+        srcs = [
+          ( ./. )
+          ( pkgs.fetchFromGitHub {
+            name = "qmk_firmware";
+            owner = "qmk";
+            repo = "qmk_firmware";
+            tag = "0.28.2";
+            hash = "sha256-mNySUNgB2rmY+TwSRIFAWj+W77dM27dkiGy0eznawkw=";
+          } )
+        ];
+        sourceRoot = ".";
+        buildPhase = ''
+          pwd
+          ls -lah
+          # cp -r ${qmk-git} ./qmk_firmware
+          ${pkgs.lib.getExe pkgs.tree} . | head -n 20
+          ls -lah ./qmk_firmware
+          mkdir -p testttt
+          # mkdir -p ./qmk_firmware/testttt
+          # mkdir -p ./qmk_firmware/keyboards/testttt
+
+          # cp -r ${./.} ./qmk_firmware/keyboards/crkbd/keymaps/osbm-config
+          # ${pkgs.lib.getExe pkgs.tree} . | head -n 20
+
+          mkdir -p $out
+        '';
+        buildInputs = [
+          pkgs.qmk
+        ];
+        # buildPhase = ''
+        #   qmk setup
+        # '';
+        
+
       };
     };
 }
