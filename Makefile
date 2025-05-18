@@ -9,7 +9,7 @@ all:
 		-e MAKEFLAGS= \
 		qmk-cli make crkbd/rev1:osbm-config:flash
 
-miryoku:
+flash-miryoku:
 	echo started compiling
 	docker run --rm -it --privileged \
 		-v /dev:/dev \
